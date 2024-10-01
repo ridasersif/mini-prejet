@@ -4,8 +4,10 @@
 
 int main()
 {
-    int choix,x=0;
-    char adresse[100],rech_a[100];
+    int choix,i,x=0,m=0,mis=0;
+    char book[100];
+    char adresse[200];
+    char rech[200];
 
     printf ("choisissez parmi les option suivantes :\n");
      //***********************************************
@@ -38,38 +40,59 @@ int main()
                  scanf("%d",&quantite[x]);
                  x++;
                  goto go;
+
         break;
         case 2 : printf("les Livres Disponibles est :\n");
-                for(int i=0;i<=x;i++)
+                for(int i=0;i<x;i++)
                 {   printf("\n---------------------------------\n");
                     printf("\n%s",titre[i]);
                     printf("\n%s",auteur[i]);
                     printf("\n%.2f",prix[i]);
                     printf("\n%d",quantite[i]);
-                    goto go;
+
                 }
+                 goto go;
         break;
-        case 3 : printf ("entrez le titer du liver que vous recherchez :\n");
+        printf("\n*********************************************************\n");
+        case 3 : printf ("entrez le titer et l'auteur de liver que vous recherchez :\n");
                  printf ("titer : ");
                  scanf ("%s",adresse);
-                 printf ("\nauteur : ",rech_a);
+                 printf ("\nauteur : ",rech);
+                 scanf ("%s",rech);
 
                  for(int i=0;i<x;i++)
                  {
-                     if(strcmp(adresse,titre[i])==0&& strcmp(adresse,rech_a[i])==0)
+                    if(strcmp(adresse,titre[i])==0 && strcmp(rech,auteur[i])==0)
                      {
-                    printf("\nl'auteur est : %s",auteur[i]);
                     printf("\nle prix est : %.2f",prix[i]);
                     printf("\nla quantite est : %d",quantite[i]);
-
+                    m++;
                     break;
                      }
-                     else printf("\n==> Ce liver \" %s \" n'est pas disponible pur le moment",adresse);
                  }
+                 if(m==0) printf("\n==> Ce liver \" %s \" n'est pas disponible pur le moment",adresse);
+                 goto go;
           break;
+        case 4 : printf("\n*********************************************************\n");
+                 printf("entrez le titer de liver amise_ajour");
+                 printf ("titer : ");
+                 scanf ("%s",book);
 
+                 for(int i=0;i<x;i++);
+                 {
+                     if(strcmp(book,titre[i])==0)
+                     {
+                          printf("==> ");
+                         printf("entrez la nouvelle quantete\n");
+                         printf("la quontite de la liver \"%s\" est : ",book);
+                          printf("==> ");
+                         scanf("%d",&quantite[i]);
+                         printf("\nstock est mis a jour");
+                         mis++;
+                     }
+                 }
+                 if (mis==0) printf("Ce liver \" %s \" n'est pas disponible dans le stock .",book);
         }
-
     }
 
     return 0;
